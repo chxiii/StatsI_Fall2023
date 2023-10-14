@@ -105,7 +105,7 @@ print(s_resi_heatmap)
 df <- readr::read_csv(
   "https://raw.githubusercontent.com/kosukeimai/qss/master/PREDICTION/women.csv")
 # Set regression's dependent variable and independent variable
-reg_y <- df$water; reg_x <- df$female
+reg_y <- df$water; reg_x <- df$reserved
 # Because the independent variable is categorical, 
 # so draw a bar plot instad of scatter
 # Draw a scatter to see differences between these two variables
@@ -117,15 +117,15 @@ reg_mean_ci <- aggregate(reg_y ~ reg_x, data=df, FUN=function(x){
   return <- (c(mea_y, ci[1], ci[2]))
 })
 # Create x and y for point plot
-sca_x <- c("0", "1"); sca_y <- c(14.8, 22.7)
+sca_x <- c("0", "1"); sca_y <- c(14.74, 23.99)
 # Create lowerci and upperci for point plot
 lower_ci <- reg_mean_ci$reg_y[,2]; upper_ci <- reg_mean_ci$reg_y[,3]
-reg_sca <- ggplot(mea_y, aes(x=bar_x, y=bar_y)) +
+reg_sca <- ggplot(reg_mean_ci, aes(x=sca_x, y=sca_y)) +
   geom_point() +
   geom_errorbar(aes(ymin=lower_ci, ymax=upper_ci), width=0.2) +
-  labs(x="Gender", y="Mean of Water",
-       title="New Repaired Drinking-water Facilities Group by Gender") +
-  scale_x_discrete(labels=c("Male", "Female")) +
+  labs(x="Reversed", y="Mean of Water",
+       title="New Repaired Drinking-water Facilities Group by Reserved") +
+  scale_x_discrete(labels=c("No", "Yes")) +
   ylim(0,35) +
   theme_bw()
 reg_sca

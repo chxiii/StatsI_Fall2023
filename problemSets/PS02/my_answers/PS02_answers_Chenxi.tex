@@ -190,13 +190,13 @@ Chattopadhyay and Duflo were interested in whether women promote different polic
 	\newpage
 	\item [(b)] Run a bivariate regression to test this hypothesis in \texttt{R} (include your code!).
 	\vspace{.5cm}\\
-	Put "water" as dependent variable and binary variable "female" as independent variable. And because binary variable "female" is already a dummy variable, so we don't need to operate anything on it.\\
+	Put "water" as dependent variable and binary variable "reversed" as independent variable. And because binary variable "reversed" is already a dummy variable, so we don't need to operate anything on it.\\
 	
-	Before we start regression model, we can draw a point plot to see the mean value of newly repaired drinking water facilities group by gender. \\
+	Before we start regression model, we can draw a point plot to see the mean value of newly repaired drinking water facilities group by reversed. \\
 	\begin{figure}[h]
 	\centering
-	\caption{Point: Water Group by Gender}
-	\includegraphics[scale=0.5]{Point&ci_Water_Groupby_Gender.png}
+	\caption{Point: Water Group by Reversed}
+	\includegraphics[scale=0.5]{Point&ci_Water_Groupby_Reversed.png}
 	\end{figure}
 	
 	Below is the R code of the plot:
@@ -214,18 +214,18 @@ Chattopadhyay and Duflo were interested in whether women promote different polic
 			\toprule
 			& Estimate & Std. Error & t value & Pr($>|t|$) \\
 			\midrule
-			(Intercept) & 14.813 & 2.382 & 6.220 & 1.56e-09 *** \\
-			female & 7.864 & 3.838 & 2.049 & 0.0413 * \\
+			(Intercept) & 14.738 & 2.286 & 6.446 & 4.22e-10 *** \\
+			Reversed & 9.252 & 3.948 & 2.344 & 0.0197 * \\
 			\bottomrule
 		\end{tabular} 
 	\end{table}
 	Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 \\
 	
-	Residual standard error: 33.51 on 320 degrees of freedom \\
-	Multiple R-squared:  0.01295,	Adjusted R-squared:  0.009867 \\
-	F-statistic: 4.199 on 1 and 320 DF,  p-value: 0.04126 \\
+	Residual standard error: 33.45 on 320 degrees of freedom \\
+	Multiple R-squared:  0.01688,	Adjusted R-squared:  0.0138  \\
+	F-statistic: 5.493 on 1 and 320 DF,  p-value: 0.0197 \\
 	
-	Because the slop's p value is 0.0413 < 0.05, so it is significant.\\
+	Because the slop's p value is 0.0197 < 0.05, so it is significant.\\
 	
 	And this suggests we can reject $H_0$ and accept $H_1$, which means $\beta$ $\neq$ 0.
 
@@ -235,11 +235,11 @@ Chattopadhyay and Duflo were interested in whether women promote different polic
 	
 	According to (b), the regression model is: \\
 	
-	y = 7.864 x + 14.813 \\
+	y = 9.252 x + 14.738 \\
 	
 	According the regression model, because we pass the F test and the slop is significant, so we can make this statement:\\
 	
-	In comparison to non-female leaders GP, the female leaders GP's newly repair drinking water facilities will expect to increase 7.864. \\
+	In comparison to non-female leaders GP, the female leaders GP's newly repair drinking water facilities will expect to increase 9.252. \\
 	
 \end{enumerate}
 

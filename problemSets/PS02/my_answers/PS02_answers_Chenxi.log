@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.9.12)  13 OCT 2023 21:07
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.9.12)  14 OCT 2023 18:10
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1000,13 +1000,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 191--194
 
  []
 
-<Point&ci_Water_Groupby_Gender.png, id=165, 501.875pt x 501.875pt>
-File: Point&ci_Water_Groupby_Gender.png Graphic file (type png)
-<use Point&ci_Water_Groupby_Gender.png>
-Package pdftex.def Info: Point&ci_Water_Groupby_Gender.png  used on input line 
-199.
+<Point&ci_Water_Groupby_Reversed.png, id=165, 501.875pt x 501.875pt>
+File: Point&ci_Water_Groupby_Reversed.png Graphic file (type png)
+<use Point&ci_Water_Groupby_Reversed.png>
+Package pdftex.def Info: Point&ci_Water_Groupby_Reversed.png  used on input lin
+e 199.
 (pdftex.def)             Requested size: 250.93687pt x 250.93687pt.
-(./PS02_answers_Chenxi.R [9 <./Point&ci_Water_Groupby_Gender.png>])
+(./PS02_answers_Chenxi.R [9 <./Point&ci_Water_Groupby_Reversed.png>])
 Underfull \hbox (badness 10000) in paragraph at lines 205--206
 
  []
@@ -1056,10 +1056,10 @@ Package rerunfilecheck Info: File `PS02_answers_Chenxi.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 27533 strings out of 476025
- 482829 string characters out of 5790017
+ 27532 strings out of 476025
+ 482837 string characters out of 5790017
  2121388 words of memory out of 5000000
- 47325 multiletter control sequences out of 15000+600000
+ 47324 multiletter control sequences out of 15000+600000
  530982 words of font info for 87 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  84i,9n,89p,3251b,2130s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1080,7 +1080,7 @@ e/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/
 /texmf-dist/fonts/type1/public/cm-super/sfrm2074.pfb></usr/local/texlive/2023/t
 exmf-dist/fonts/type1/public/cm-super/sfti1000.pfb></usr/local/texlive/2023/tex
 mf-dist/fonts/type1/public/cm-super/sftt1200.pfb>
-Output written on PS02_answers_Chenxi.pdf (11 pages, 337399 bytes).
+Output written on PS02_answers_Chenxi.pdf (11 pages, 337650 bytes).
 PDF statistics:
  324 PDF objects out of 1000 (max. 8388607)
  266 compressed objects within 3 object streams
