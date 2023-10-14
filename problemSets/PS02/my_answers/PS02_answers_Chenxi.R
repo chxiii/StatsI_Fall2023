@@ -129,7 +129,6 @@ reg_sca <- ggplot(mea_y, aes(x=bar_x, y=bar_y)) +
   ylim(0,35) +
   theme_bw()
 reg_sca
-
 # Create a regression model
 reg_mod <- lm(reg_y ~ reg_x, data=df)
 summary(reg_mod)
