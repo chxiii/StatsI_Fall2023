@@ -33,6 +33,7 @@
 \usepackage{listings}
 \usepackage{color}
 \usepackage[T1]{fontenc}
+\usepackage{booktabs}
 
 \definecolor{codegreen}{rgb}{0,0.6,0}
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
@@ -134,13 +135,27 @@
 	\lstinputlisting[language=R, firstline=62, lastline=74]{PS02_answers_Chenxi.R}
 	\newpage
 	\item [(d)] How might the standardized residuals help you interpret the results?  \\
-	 If we assume that we pass the hypothesis test, and we can say lower class people are more possible to request a bribe, and higher class people are more possbile to stopped or given warning. \\
+	
+	Firstly, we can determine whether the difference between the observed value and the expected value in each cell is significant.
+	\begin{itemize}
+		\item Since no cell has a standardized residual greater than 1.61, we can assume that there is no difference between the observed and expected values in these cells.
+	\end{itemize}
+	Secondly, we can judge the relationship of observed and expected value based on the positive and negative conditions of the residual. If we assume each standard residuals is significant, then we can conclude that: 
+	\begin{itemize}
+		\item For not stopped bribe categorical, upper class's observed value more than expected value; and lower class's observed value less than expected value.
+		\item For bribe requested categorical, upper class's observed value less than expected value; and lower class's observed value more than expected value.
+		\item For stopped or given warning categorical, upper class's observed value more than expected value, and lower class's observed value less than expected value.
+	\end{itemize}
+	
+	Draw a heat map to visualize each cell's standard residual:
 	\begin{figure}[h]
 		\centering
 		\caption{Heatmap: Standard Residual}
 		\includegraphics[scale=0.5]{Heatmap_Standard_Residual.png}
 	\end{figure}
-		\lstinputlisting[language=R, firstline=76, lastline=95]{PS02_answers_Chenxi.R}
+	\newpage
+	Below is the R code:
+	\lstinputlisting[language=R, firstline=76, lastline=95]{PS02_answers_Chenxi.R}
 \end{enumerate}
 \newpage
 
@@ -161,29 +176,71 @@ Chattopadhyay and Duflo were interested in whether women promote different polic
 \begin{enumerate}
 	\item [(a)] State a null and alternative (two-tailed) hypothesis. 
 	\vspace{.5cm} \\
-	$H_0$: There was no difference in the number of newly built drinking water facilities between GP with and without female leadership. \\
+	$H_0$: Whether there are female leaders in a region \textbf{is not related to} with the number of newly built drinking water facilities in the region. \\
 	
-	$H_1$: There was difference  in the number of newly built drinking water facilities between GP with and without female leadership. \\
+	$H_1$: Whether there are female leaders in a region \textbf{is related to} the number of newly built drinking water facilities in the region. \\
 	
 	And in math language, we can also make the statement like this: \\
 	
-	$H_0$: $\theta_0$ = $\theta_1$\\
-	$H_1$: $\theta_0$ $\neq$ $\theta_1$ 
+	$H_0$: $\beta$ = 0\\
+	$H_1$: $\beta$ $\neq$ 0 \\
 	\vspace{.5cm} \\
-	$\theta_0$ means the number of newly built drinking water facilities in GP which has a female leader.
-	
-	$\theta_1$ means the number of newly built drinking water facilities in GP which has not have a female leader.
+	$\beta_0$ means the slop in regression model y = $\beta$x + $\alpha$ + $\varepsilon$
+		
 	\newpage
 	\item [(b)] Run a bivariate regression to test this hypothesis in \texttt{R} (include your code!).
+	\vspace{.5cm}\\
+	Put "water" as dependent variable and binary variable "female" as independent variable. And because binary variable "female" is already a dummy variable, so we don't need to operate anything on it.\\
 	
-	Put "water" as dependent variable and binary variable "female" as independent variable.\\
-	Because binary variable "female" is already a dummy variable, so we don't need to operate anything on it.\\
+	Before we start regression model, we can draw a point plot to see the mean value of newly repaired drinking water facilities group by gender. \\
+	\begin{figure}[h]
+	\centering
+	\caption{Point: Water Group by Gender}
+	\includegraphics[scale=0.5]{Point&ci_Water_Groupby_Gender.png}
+	\end{figure}
+	
+	Below is the R code of the plot:
+	\lstinputlisting[language=R, firstline=101, lastline=130]{PS02_answers_Chenxi.R}
 	
 	Use R to get the data frame and create regression model: \\
+	\lstinputlisting[language=R, firstline=132, lastline=134]{PS02_answers_Chenxi.R}
 	
+	And we can get the regression model table from R:
+	
+	\begin{table}[ht]
+		\centering
+		\caption{Abstract of Regression Model}
+		\begin{tabular}{lcccc}
+			\toprule
+			& Estimate & Std. Error & t value & Pr($>|t|$) \\
+			\midrule
+			(Intercept) & 14.813 & 2.382 & 6.220 & 1.56e-09 *** \\
+			female & 7.864 & 3.838 & 2.049 & 0.0413 * \\
+			\bottomrule
+		\end{tabular} 
+	\end{table}
+	Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 \\
+	
+	Residual standard error: 33.51 on 320 degrees of freedom \\
+	Multiple R-squared:  0.01295,	Adjusted R-squared:  0.009867 \\
+	F-statistic: 4.199 on 1 and 320 DF,  p-value: 0.04126 \\
+	
+	Because the slop's p value is 0.0413 < 0.05, so it is significant.\\
+	
+	And this suggests we can reject $H_0$ and accept $H_1$, which means $\beta$ $\neq$ 0.
+
 	
 	\newpage
-	\item [(c)] Interpret the coefficient estimate for reservation policy. 
+	\item [(c)] Interpret the coefficient estimate for reservation policy. \\
+	
+	According to (b), the regression model is: \\
+	
+	y = 7.864 x + 14.813 \\
+	
+	According the regression model, because we pass the F test and the slop is significant, so we can make this statement:\\
+	
+	In comparison to non-female leaders GP, the female leaders GP's newly repair drinking water facilities will expect to increase 7.864. \\
+	
 \end{enumerate}
 
 \end{document}

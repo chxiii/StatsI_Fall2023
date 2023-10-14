@@ -2,6 +2,7 @@
 # Import package
 # install.packages("reshape2")
 # install.package("ggplot2") # If not install, install the package
+
 library(reshape2)
 library(ggplot2)
 
@@ -108,11 +109,26 @@ reg_y <- df$water; reg_x <- df$female
 # Because the independent variable is categorical, 
 # so draw a bar plot instad of scatter
 # Draw a scatter to see differences between these two variables
-mea_y <- aggregate(reg_y ~ reg_x, data=df, FUN=mean)
-bar_x <- c("0", "1"); bar_y <- c(14.8, 22.7)
-reg_bar <- ggplot(mea_y, aes(x=bar_x, y=bar_y, fill=bar_x)) +
-  geom_bar(stat = "identity")
-reg_bar
+
+# Create a data frame about mean and upper, lower ci
+reg_mean_ci <- aggregate(reg_y ~ reg_x, data=df, FUN=function(x){
+  mea_y <- mean(x)
+  ci <- t.test(x)$conf.int
+  return <- (c(mea_y, ci[1], ci[2]))
+})
+# Create x and y for point plot
+sca_x <- c("0", "1"); sca_y <- c(14.8, 22.7)
+# Create lowerci and upperci for point plot
+lower_ci <- reg_mean_ci$reg_y[,2]; upper_ci <- reg_mean_ci$reg_y[,3]
+reg_sca <- ggplot(mea_y, aes(x=bar_x, y=bar_y)) +
+  geom_point() +
+  geom_errorbar(aes(ymin=lower_ci, ymax=upper_ci), width=0.2) +
+  labs(x="Gender", y="Mean of Water",
+       title="New Repaired Drinking-water Facilities Group by Gender") +
+  scale_x_discrete(labels=c("Male", "Female")) +
+  ylim(0,35) +
+  theme_bw()
+reg_sca
 
 # Create a regression model
 reg_mod <- lm(reg_y ~ reg_x, data=df)
