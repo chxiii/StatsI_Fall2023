@@ -1,0 +1,151 @@
+#####################
+# load libraries
+# set wd
+# clear global .envir
+#####################
+
+# remove objects
+rm(list=ls())
+# detach all libraries
+detachAllPackages <- function() {
+  basic.packages <- c("package:stats", "package:graphics", "package:grDevices", "package:utils", "package:datasets", "package:methods", "package:base")
+  package.list <- search()[ifelse(unlist(gregexpr("package:", search()))==1, TRUE, FALSE)]
+  package.list <- setdiff(package.list, basic.packages)
+  if (length(package.list)>0)  for (package in package.list) detach(package,  character.only=TRUE)
+}
+detachAllPackages()
+
+# load libraries
+pkgTest <- function(pkg){
+  new.pkg <- pkg[!(pkg %in% installed.packages()[,  "Package"])]
+  if (length(new.pkg)) 
+    install.packages(new.pkg,  dependencies = TRUE)
+  sapply(pkg,  require,  character.only = TRUE)
+}
+
+# here is where you load any necessary packages
+library(ggplot2)
+# ex: stringr
+# lapply(c("stringr"),  pkgTest)
+
+# set wd for current folder
+setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+
+# read in data
+inc.sub <- read.csv("https://raw.githubusercontent.com/ASDS-TCD/StatsI_Fall2023/main/datasets/incumbents_subset.csv")
+
+####### Question 1 #######
+
+##### (1) #####
+
+q1_reg_model <- lm(voteshare ~ difflog, data=inc.sub)
+summary(q1_reg_model)
+
+##### (2) #####
+
+q1_scatter <- ggplot(inc.sub, aes(x=difflog, y=voteshare)) +
+  geom_point(shape=1, size=0.6, color="#609966", alpha=0.4) +
+  geom_smooth(method="lm", se=FALSE, color="#52616B", size=0.5) +
+  ggtitle("Scatter: difflog and voteshare") +
+  theme_bw()
+q1_scatter
+
+##### (3) #####
+
+q1_residuals <- residuals(q1_reg_model)
+
+##### (4) #####
+
+q1_cof_vec <- coef(q1_reg_model)
+
+q1_intercept <- q1_cof_vec[1]
+q1_slope <- q1_cof_vec[2]
+
+q1_pre_equation <- paste(
+  "y =", round(q1_intercept, 2), "+", round(q1_slope, 2), "* x")
+q1_pre_equation
+
+####### Question 2 #######
+
+##### (1) #####
+
+q2_reg_model <- lm(presvote ~ difflog, data=inc.sub)
+summary(q2_reg_model)
+
+##### (2) #####
+
+q2_scatter <- ggplot(inc.sub, aes(x=difflog, y=presvote)) +
+  geom_point(shape=1, size=0.6, color="#609966", alpha=0.4) +
+  geom_smooth(method="lm", se=FALSE, color="#52616B", size=0.5) +
+  ggtitle("Scatter: difflog and presvote") +
+  theme_bw()
+q2_scatter
+
+##### (3) #####
+
+q2_residuals <- residuals(q2_reg_model)
+
+##### (4) #####
+
+q2_cof_vec <- coef(q2_reg_model)
+
+q2_intercept <- q2_cof_vec[1]
+q2_slope <- q2_cof_vec[2]
+
+q2_pre_equation <- paste(
+  "y =", round(q2_intercept, 2), "+", round(q2_slope, 2), "* x")
+q2_pre_equation
+
+####### Question 3 #######
+
+##### (1) #####
+
+q3_reg_model <- lm(voteshare ~ presvote, data=inc.sub)
+summary(q3_reg_model)
+
+##### (2) #####
+
+q3_scatter <- ggplot(inc.sub, aes(x=presvote, y=voteshare)) +
+  geom_point(shape=1, size=0.6, color="#609966", alpha=0.4) +
+  geom_smooth(method="lm", se=FALSE, color="#52616B", size=0.5) +
+  ggtitle("Scatter: difflog and presvote") +
+  theme_bw()
+q3_scatter
+
+##### (3) #####
+
+q3_cof_vec <- coef(q3_reg_model)
+
+q3_intercept <- q3_cof_vec[1]
+q3_slope <- q3_cof_vec[2]
+
+q3_pre_equation <- paste(
+  "y =", round(q3_intercept, 2), "+", round(q3_slope, 2), "* x")
+q3_pre_equation
+
+####### Question 4 #######
+
+##### (1) #####
+
+q4_reg_model <- lm(q1_residuals ~ q2_residuals, data=inc.sub)
+summary(q4_reg_model)
+
+##### (2) #####
+
+q4_scatter <- ggplot(inc.sub, aes(x=q2_residuals, y=q1_residuals)) +
+  geom_point(shape=1, size=0.6, color="#609966", alpha=0.4) +
+  geom_smooth(method="lm", se=FALSE, color="#52616B", size=0.5) +
+  ggtitle("Scatter: difflog and presvote") +
+  theme_bw()
+q4_scatter
+
+##### (3) #####
+
+q4_cof_vec <- coef(q4_reg_model)
+
+q4_intercept <- q4_cof_vec[1]
+q4_slope <- q4_cof_vec[2]
+
+q4_pre_equation <- paste(
+  "y =", round(q4_intercept, 2), "+", round(q4_slope, 2), "* x")
+q4_pre_equation
