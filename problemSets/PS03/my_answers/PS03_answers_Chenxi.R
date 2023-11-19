@@ -24,9 +24,9 @@ pkgTest <- function(pkg){
 }
 
 # here is where you load any necessary packages
-library(ggplot2)
 # ex: stringr
 # lapply(c("stringr"),  pkgTest)
+lapply(c("ggplot2"),  pkgTest)
 
 # set wd for current folder
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
@@ -44,15 +44,17 @@ summary(q1_reg_model)
 ##### (2) #####
 
 q1_scatter <- ggplot(inc.sub, aes(x=difflog, y=voteshare)) +
-  geom_point(shape=1, size=0.6, color="#609966", alpha=0.4) +
+  geom_point(shape=1, size=0.8, color="#609966", alpha=0.4) +
   geom_smooth(method="lm", se=FALSE, color="#52616B", size=0.5) +
-  ggtitle("Scatter: difflog and voteshare") +
+  ggtitle("Scatter: voteshare and difflog") +
   theme_bw()
 q1_scatter
 
 ##### (3) #####
 
 q1_residuals <- residuals(q1_reg_model)
+str(q1_residuals)
+summary(q1_residuals)
 
 ##### (4) #####
 
@@ -62,7 +64,7 @@ q1_intercept <- q1_cof_vec[1]
 q1_slope <- q1_cof_vec[2]
 
 q1_pre_equation <- paste(
-  "y =", round(q1_intercept, 2), "+", round(q1_slope, 2), "* x")
+  "voteshare =", round(q1_intercept, 2), "+", round(q1_slope, 2), "* difflog")
 q1_pre_equation
 
 ####### Question 2 #######
@@ -75,15 +77,17 @@ summary(q2_reg_model)
 ##### (2) #####
 
 q2_scatter <- ggplot(inc.sub, aes(x=difflog, y=presvote)) +
-  geom_point(shape=1, size=0.6, color="#609966", alpha=0.4) +
+  geom_point(shape=1, size=0.8, color="#609966", alpha=0.4) +
   geom_smooth(method="lm", se=FALSE, color="#52616B", size=0.5) +
-  ggtitle("Scatter: difflog and presvote") +
+  ggtitle("Scatter: presvote and difflog") +
   theme_bw()
 q2_scatter
 
 ##### (3) #####
 
 q2_residuals <- residuals(q2_reg_model)
+str(q2_residuals)
+summary(q2_residuals)
 
 ##### (4) #####
 
@@ -93,7 +97,7 @@ q2_intercept <- q2_cof_vec[1]
 q2_slope <- q2_cof_vec[2]
 
 q2_pre_equation <- paste(
-  "y =", round(q2_intercept, 2), "+", round(q2_slope, 2), "* x")
+  "presvote =", round(q2_intercept, 2), "+", round(q2_slope, 2), "* difflog")
 q2_pre_equation
 
 ####### Question 3 #######
@@ -106,9 +110,9 @@ summary(q3_reg_model)
 ##### (2) #####
 
 q3_scatter <- ggplot(inc.sub, aes(x=presvote, y=voteshare)) +
-  geom_point(shape=1, size=0.6, color="#609966", alpha=0.4) +
+  geom_point(shape=1, size=0.8, color="#609966", alpha=0.4) +
   geom_smooth(method="lm", se=FALSE, color="#52616B", size=0.5) +
-  ggtitle("Scatter: difflog and presvote") +
+  ggtitle("Scatter: voteshare and presvote") +
   theme_bw()
 q3_scatter
 
@@ -120,7 +124,7 @@ q3_intercept <- q3_cof_vec[1]
 q3_slope <- q3_cof_vec[2]
 
 q3_pre_equation <- paste(
-  "y =", round(q3_intercept, 2), "+", round(q3_slope, 2), "* x")
+  "voteshare =", round(q3_intercept, 2), "+", round(q3_slope, 2), "* presvote")
 q3_pre_equation
 
 ####### Question 4 #######
@@ -133,9 +137,9 @@ summary(q4_reg_model)
 ##### (2) #####
 
 q4_scatter <- ggplot(inc.sub, aes(x=q2_residuals, y=q1_residuals)) +
-  geom_point(shape=1, size=0.6, color="#609966", alpha=0.4) +
+  geom_point(shape=1, size=0.8, color="#609966", alpha=0.4) +
   geom_smooth(method="lm", se=FALSE, color="#52616B", size=0.5) +
-  ggtitle("Scatter: difflog and presvote") +
+  ggtitle("Scatter: q1residuals and q2residuals") +
   theme_bw()
 q4_scatter
 
@@ -147,5 +151,44 @@ q4_intercept <- q4_cof_vec[1]
 q4_slope <- q4_cof_vec[2]
 
 q4_pre_equation <- paste(
-  "y =", round(q4_intercept, 2), "+", round(q4_slope, 2), "* x")
+  "q1_residuals =", round(q4_intercept, 2), "+", round(q4_slope, 2), "* q2_residuals")
 q4_pre_equation
+
+####### Question 5 #######
+
+##### (1) #####
+
+q5_reg_model <- lm(voteshare ~ difflog + presvote, data=inc.sub)
+summary(q5_reg_model)
+
+##### (2) #####
+
+q5_cof_vec <- coef(q5_reg_model)
+
+q5_intercept <- q5_cof_vec[1]
+q5_slope1 <- q5_cof_vec[2]
+q5_slope2 <- q5_cof_vec[3]
+
+q5_pre_equation <- paste(
+  "voteshare =", round(q5_intercept, 2), 
+  "+", round(q5_slope1, 2), "* difflog", 
+  "+", round(q5_slope2, 2), "* presvote")
+q5_pre_equation
+
+##### (3) #####
+
+q4_residuals <- as.vector(resid(q4_reg_model))
+q5_residuals <- as.vector(resid(q5_reg_model))
+str(q4_residuals); str(q5_residuals)
+
+q5_data <- data.frame(
+  model = rep(c("q4_reg_model", "q5_reg_model"),
+              each=length(q4_residuals)),
+  residuals = c(q4_residuals, q5_residuals)
+)
+
+q5_boxplot <- ggplot(q5_data, aes(x=model, y=residuals, fill=model)) +
+  geom_boxplot(fill=c("#739072", "#ECE3CE")) + 
+  ggtitle("Boxplot: Residuals in Question 4 and 5") +
+  theme_bw()
+q5_boxplot
