@@ -144,11 +144,12 @@ help(Prestige)
 	
 	The basic format of this interaction regression model is:\\
 	$prestige = \alpha + \beta_1 income_i + \beta_2 professional_i + \beta_3 income_i * professional_i + \epsilon_i $ \\
+	
 	So I choose to write my R code in this style:
 	\lstinputlisting[language=R, firstline=48, lastline=59]{PS04_answers_Chenxi.R}
 \begin{table}[!htbp]
 	 \centering   
-	 \caption{Outcome variable is prestige, predictors are income, professional and the interaction }   
+	 \caption{\textbf{Outcome is prestige, predictors are income, professional and interaction} }   
 	 \label{} 
 	 \begin{tabular}
 	 	{@{\extracolsep{5pt}}lc} \\[-1.8ex]\hline \hline \\[-1.8ex] & prestige \\
@@ -165,51 +166,62 @@ help(Prestige)
  	\end{tabular} 
  \end{table} 
 
-There is a positive and statistically reliable relationship between the income and prestige, the professional and prestige. But there is a negative and statistically reliable relationship between the income and the interaction.  
+There is a positive and statistically reliable relationship between the income and prestige, the professional and prestige. But there is a negative and statistically reliable relationship between the prestige and the interaction of income and professional.  
 
-So we can discuss this model in classification:
-
-\begin{itemize}
-	\item Explain the Main Effect: 
-		\begin{itemize}
-			\item If other variable held constant, a 1 unit increase in the income is associated with an average increase of 0.003 in prestige.
-			\item If other variable held constant, compared with those who are not professional, professional people is associated with an average increase of 37.781 in prestige. 
-		\end{itemize}
-	\item Explain the Interaction Effect:
-	
-	
-\end{itemize}
-
-
-Compared with non-professional people, those who are professional will have an average increase of 37.781 in prestige.
-
-
-
-such that a one unit increase in the logged difference in spending is associated with an average increase of 0.024 in the incumbent’s vote share (2.4%)
+	\vspace{.5cm}
 
 	\item [(c)]
-	Write the prediction equation based on the result.
+	Write the prediction equation based on the result.\\
 	
-	$prestige = 21.142 + 0.003 * income + 37.781 * professional - 0.02 * income * professional$
+	$prestige = 21.142 + 0.003 * income + 37.781 * professional - 0.002 * income * professional$
 	
-\newpage
+	\vspace{.5cm}
 	\item [(d)]
 	Interpret the coefficient for \texttt{income}.
-	
-	\vspace{10cm}	
+	\begin{itemize}
+		\item \textbf{For non professional people}: Such a 1 unit increase in the income is associated with an average increase of 0.003 in prestige.
+		\item \textbf{For professional people}: Such a 1 unit increase in the income is associated with an average increase of $(0.003 - 0.002 = -0.001)$ in prestige.
+	\end{itemize}
+	\vspace{.5cm}
 	\item [(e)]
 	Interpret the coefficient for \texttt{professional}.
-	
+	\begin{itemize}
+		\item  \textbf{For non professional people}: The prestige is $21.142 + 0.003 * income$
+		\item \textbf{For professional people}: Compared with those who are not professional, professional people is associated with an average increase of $(37.781 - 0.002 = 37.779)$ in prestige.
+	\end{itemize}
 	\newpage
 	\item [(f)]
-	What is the effect of a \$1,000 increase in income on prestige score for professional occupations? In other words, we are interested in the marginal effect of income when the variable \texttt{professional} takes the value of $1$. Calculate the change in $\hat{y}$ associated with a \$1,000 increase in income based on your answer for (c).
+	What is the effect of a \$1,000 increase in income on prestige score for professional occupations? In other words, we are interested in the marginal effect of income when the variable \texttt{professional} takes the value of $1$. Calculate the change in $\hat{y}$ associated with a \$1,000 increase in income based on your answer for (c).\\
+
+	According to the question, we know: \texttt{professional} = 1,  \texttt{income} increase = 1000\\
+	So we can have the formula: \\
+	$prestige_1 =  21.142 + 0.003 * income + 37.781 * professional - 0.002 * income * professional $  ..........(1)\\
+	$prestige_2 =  21.142 + 0.003 * (income + 1000) + 37.781 * professional - 0.002 * (income + 1000) * professional $ ..........(2) \\
 	
-	\vspace{10cm}
+	$\hat{y} = (2) - (1) = prestige_2 - prestige_1 = $ \\ 
+	$0.003 * (income + 1000) - 0.003 * income  - [-0.002 * (income + 1000) * professional - (-0.002 * income * professional)] = $ \\
+	$ 3 - 2 * professional = 3 - 2 = 1$\\
 	
+	\textbf{We can conclude that}: For \texttt{professional} people, each \$1,000 \texttt{income} increase will raise 1 prestige in average.
+	
+	\vspace{.5cm}
 	
 	\item [(g)]
-	What is the effect of changing one's occupations from non-professional to professional when her income is \$6,000? We are interested in the marginal effect of professional jobs when the variable \texttt{income} takes the value of $6,000$. Calculate the change in $\hat{y}$ based on your answer for (c).
+	What is the effect of changing one's occupations from non-professional to professional when her income is \$6,000? We are interested in the marginal effect of professional jobs when the variable \texttt{income} takes the value of $6,000$. Calculate the change in $\hat{y}$ based on your answer for (c).\\
 	
+	According to the question, we know: \texttt{income} = 6000 \\
+	So we can have the formula:\\
+	$prestige_1 =  21.142 + 0.003 * income + 37.781 * professional - 0.002 * income * professional $ ..........(1)\\
+	$prestige_2 =  21.142 + 0.003 * income + 37.781 * professional - 0.002 * income * professional $ ..........(2)\\
+	
+	And for formula (1), \texttt{professional} = 0, for formula (2), \texttt{professional} = 1 \\
+	$prestige_1 = 21.142 + 0.003 * 6000 = 39.142$ \\
+	$prestige_2 = 21.142 + 0.003 * 6000 + 37.781 * 1 - 0.002 * 6000 * 1 = 64.923$ \\
+	
+	$\hat{y} = (2) - (1) = prestige_2 - prestige_1 = 64.923 - 39.142 = 25.781$ \\ 
+	
+	\textbf{We can conclude that:} If someone \texttt{income} is \$6000, and change from non-professional to professional, this person will have a 25.781 increase in prestige in average.
+
 	
 \end{enumerate}
 
@@ -241,20 +253,85 @@ a precinct that was adjacent to a precinct in the treatment group (since people 
 	\footnotesize{\textit{Notes:} $R^2$=0.094, N=131}
 \end{table}
 
-\vspace{.5cm}
+\newpage
 \begin{enumerate}
-	\item [(a)] Use the results from a linear regression to determine whether having these yard signs in a precinct affects vote share (e.g., conduct a hypothesis test with $\alpha = .05$).
+	\item [(a)] Use the results from a linear regression to determine whether having these yard signs in a precinct affects vote share (e.g., conduct a hypothesis test with $\alpha = .05$).\\
 	
-	\newpage		
+	According to the question, we need to detect the coefficient of \texttt{Precinct assigned lawn signs}, which has a coefficient $\beta_1 = $ 0.042, and the standard error of this coefficient is 0.016. So let's make hypothesis:\\
+	
+	$H_0$: Have yard signs has no affect on vote share. ($\beta_1 = 0$) \\
+	$H_\alpha$: Have yard signs has a significant affect on vote share. ($\beta_1 \neq 0$ )\\
+	
+	We can calculate t-value in this formula: $t-value = \frac{Coefficient Est.}{Std. Er.} = \frac{0.042}{0.016} = 2.625$\\
+	Get p-value in R, and we can get R output: 
+	\begin{verbatim}
+	> q2a_pvalue <- 1 - pt(2.625, df = 128); print(q2a_pvalue)
+	[1] 0.00486001
+	\end{verbatim} 
+	
+	We can see that the p-value ($\approx$ 0.005) is below the $\alpha$ = 0.05 threshold, so we would say we have found sufficient evidence to reject the null hypothesis that have yard signs has no affect on vote share and accept alternative hypothesis.($\beta_1 \neq 0$).
+	
+	\vspace{.5cm}
+	
 	\item [(b)]  Use the results to determine whether being
 	next to precincts with these yard signs affects vote
-	share (e.g., conduct a hypothesis test with $\alpha = .05$).
+	share (e.g., conduct a hypothesis test with $\alpha = .05$).\\
 	
-	\vspace{7cm}
-	\item [(c)] Interpret the coefficient for the constant term substantively.
-	\vspace{7cm}
+	According to the question, we need to detect the coefficient of \texttt{Precinct assigned lawn signs}, which has a coefficient $\beta_1 = $ 0.042, and the standard error of this coefficient is 0.013. So let's make hypothesis:\\
 	
-	\item [(d)] Evaluate the model fit for this regression.  What does this	tell us about the importance of yard signs versus other factors that are not modeled?
+	$H_0$: Being next to precincts with yard signs has no affect on vote share. ($\beta_2 = 0$) \\
+	$H_\alpha$: Being next to precincts with yard signs has a significant affect on vote share. ($\beta_2 \neq 0$ )\\
+	
+	We can calculate t-value in this formula: $t-value = \frac{Coefficient Est.}{Std. Er.} = \frac{0.042}{0.013} \approx 3.231$\\
+	Get p-value in R, and we can get R output: 
+	\begin{verbatim}
+		> q2b_pvalue <- 1 - pt(3.231, df = 128); print(q2b_pvalue)
+		[1] 0.0007841451
+	\end{verbatim} 
+	
+	We can see that the p-value ($\approx$ 0.001) is below the $\alpha$ = 0.05 threshold, so we would say we have found sufficient evidence to reject the null hypothesis that have yard signs has no affect on vote share and accept alternative hypothesis.($\beta_2 \neq 0$).
+	
+	\newpage
+	
+	\item [(c)] Interpret the coefficient for the constant term substantively.\\
+	
+	In a multiple regression, the basic formula is:\\
+	$\hat{y} = \alpha + \beta_1 X_1 + \beta_2 X_2 + ... + \beta_n X_n + \epsilon_i$\\
+	In this case, the model is:\\
+	$voteshare = constant + \beta_1 * assigned signs + \beta_2 * adjacent signs$\\
+	So we can write the formula: \\
+	$voteshare = 0.302 + 0.042 * assigned signs + 0.042 * adjacent signs$\\
+	
+	The coefficient of the constant has these meanings:
+	\begin{table}[h]
+		\centering
+		\caption{\textbf{Constant meaning explanation}}
+		\vspace{.2cm}
+		\begin{tabular}{cc|cc}
+			\multicolumn{2}{c}{} & \multicolumn{2}{c}{If assigned lawn signs, voteshare = } \\
+			\multicolumn{2}{c}{} & yes & no \\
+			\hline
+			\multirow{2}{*}{If adjacent to lawn signs, voteshare = } & yes & $constant + \beta_1 + \beta_2  = 0.386 $ & $constant + \beta_2 = 0.344 $ \\
+			& no & $constant + \beta_1 = 0.344 $ & $constant = 0.302 $ \\
+		\end{tabular}
+	\end{table}
+	
+	In words:
+	
+	\begin{itemize}
+	\item \textbf{When people not assigned or adjacent to lawn signs}: The voteshare value will be $constant$ itself (0.302).
+	\item \textbf{When people was assigned but not adjacent to lawn signs}: The voteshare value will be $constant + \beta_1 = 0.302 + 0.042 = 0.344$.
+	\item \textbf{When people was not assigned but adjacent to lawn signs}: The voteshare value will be $constant + \beta_2 = 0.302 + 0.042 = 0.344$.
+	\item \textbf{When people was assigned and adjacent to lawn signs}: The voteshare value will be $constant + \beta_1 + \beta_2 = 0.302 + 0.042 + 0.042 = 0.386$
+	\end{itemize}
+	
+	\vspace{.5cm}
+	
+	\item [(d)] Evaluate the model fit for this regression.  What does this	tell us about the importance of yard signs versus other factors that are not modeled? \\
+	
+	According to the model output table, the $R^2 = 0.094$. This means independent variables in the model can explain approximately 9.4\% of the variability in the dependent variable. And This suggests a relatively low proportion of variance explained.\\
+	
+	I think this results suggests us the factors beyond yard signs and adjacency may contribute to voting preferences. We can consider to add other relevant variables to  improve the model.\\
 	
 \end{enumerate}  
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.9.12)  28 NOV 2023 18:11
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.9.12)  2 DEC 2023 20:28
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -944,28 +944,139 @@ Underfull \hbox (badness 10000) in paragraph at lines 143--144
 
  []
 
-(./PS04_answers_Chenxi.R) [3] [4] [5] [6]
-Underfull \hbox (badness 10000) in paragraph at lines 220--221
+
+Underfull \hbox (badness 10000) in paragraph at lines 145--147
+
+ []
+
+(./PS04_answers_Chenxi.R)
+Underfull \hbox (badness 10000) in paragraph at lines 174--175
+
+ []
+
+[3] [4]
+Underfull \hbox (badness 10000) in paragraph at lines 194--195
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 222--224
+Underfull \hbox (badness 10000) in paragraph at lines 196--200
 
  []
 
-[7] [8] (./PS04_answers_Chenxi.aux)
+
+Underfull \hbox (badness 10000) in paragraph at lines 201--204
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 210--211
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 212--216
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 217--220
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--222
+
+ []
+
+
+Overfull \hbox (1.69783pt too wide) in paragraph at lines 223--224
+[]\T1/cmr/bx/n/12 We can con-clude that: \T1/cmr/m/n/12 If some-one \T1/cmtt/m/
+n/12 income \T1/cmr/m/n/12 is $6000, and change from non-professional
+ []
+
+[5]
+Underfull \hbox (badness 10000) in paragraph at lines 232--233
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 234--236
+
+ []
+
+[6]
+Underfull \hbox (badness 10000) in paragraph at lines 258--259
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 260--261
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 262--264
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 276--279
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 280--281
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 282--284
+
+ []
+
+[7]
+Underfull \hbox (badness 10000) in paragraph at lines 296--297
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 298--304
+
+ []
+
+
+Overfull \hbox (45.18181pt too wide) in paragraph at lines 310--317
+ [][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 330--331
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 332--333
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 334--335
+
+ []
+
+[8] (./PS04_answers_Chenxi.aux)
 Package rerunfilecheck Info: File `PS04_answers_Chenxi.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 27331 strings out of 476025
- 479901 string characters out of 5790017
+ 27332 strings out of 476025
+ 479908 string characters out of 5790017
  1926388 words of memory out of 5000000
  47243 multiletter control sequences out of 15000+600000
  531329 words of font info for 87 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,10n,89p,3251b,1984s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,11n,89p,3251b,1984s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb
 ></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb>
 </usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></
@@ -986,10 +1097,10 @@ f-dist/fonts/type1/public/cm-super/sfrm2074.pfb></usr/local/texlive/2023/texmf-
 dist/fonts/type1/public/cm-super/sfti1000.pfb></usr/local/texlive/2023/texmf-di
 st/fonts/type1/public/cm-super/sfti1200.pfb></usr/local/texlive/2023/texmf-dist
 /fonts/type1/public/cm-super/sftt1200.pfb>
-Output written on PS04_answers_Chenxi.pdf (8 pages, 274472 bytes).
+Output written on PS04_answers_Chenxi.pdf (8 pages, 289437 bytes).
 PDF statistics:
- 185 PDF objects out of 1000 (max. 8388607)
- 132 compressed objects within 2 object streams
- 35 named destinations out of 1000 (max. 500000)
+ 186 PDF objects out of 1000 (max. 8388607)
+ 133 compressed objects within 2 object streams
+ 36 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 

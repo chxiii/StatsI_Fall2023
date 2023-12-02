@@ -61,3 +61,11 @@ summary(q1b_reg)
 # Get Latex table
 stargazer(q1b_reg, no.space = TRUE)
 
+############## Question 2 ##############
+
+####### (a) #######
+
+q2a_pvalue <- 1 - pt(2.625, df = 128); print(q2a_pvalue)
+
+####### (b) #######
+q2b_pvalue <- 1 - pt(3.231, df = 128); print(q2b_pvalue)
